@@ -1,0 +1,158 @@
+@use "./variable.scss";
+@use "./nprogress.scss";
+@use "./element-plus.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+.wrapper {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Microsoft YaHei", Arial, "San-Serif";
+  background-color: rgba(255, 255, 255, 1);
+}
+
+a {
+  text-decoration: none;
+}
+
+pre {
+  font-family: "Microsoft YaHei", Arial, "San-Serif";
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.bs {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  margin: 10px;
+}
+
+.txt-center {
+  text-align: center !important;
+}
+
+.txt-right {
+  text-align: right !important;
+}
+
+.txt-left {
+  text-align: left !important;
+}
+
+.link-margin {
+  margin-right: 10px;
+
+  &:hover > a {
+    color: red;
+  }
+}
+
+.aioa-dialog-fit-form {
+  min-width: 50% !important;
+  max-width: 85% !important;
+  width: fit-content !important;
+  height: fit-content !important;
+}
+
+.aioa-scroll-max-height {
+  max-height: 45vh;
+  margin-bottom: 0 !important;
+  overflow-x: hidden !important;
+}
+
+.aioa-footer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.aioa-dc-btn-submit {
+  position: fixed;
+  top: 110px;
+  right: 60px;
+  display: flex;
+  flex-direction: column;
+
+  & > .el-button {
+    color: gold !important;
+    background-color: #303133 !important;
+    border-color: blue !important;
+    box-shadow: 0 2px 10px #ffeb3b;
+
+    &:hover {
+      border-color: gold !important;
+      box-shadow: 0 2px 10px #ff5722;
+      transform: scale(1.5);
+    }
+  }
+}
+
+.aioa-tips {
+  letter-spacing: 2px;
+  line-height: 22px;
+  color: #181c33 !important;
+  font-family: "Microsoft YaHei", Arial, "San-Serif";
+  margin-bottom: 10px;
+}
+
+.aioa-dc-table {
+  position: relative;
+  margin-top: 5px;
+
+  th,
+  td {
+    padding: 0 !important;
+  }
+
+  div.cell {
+    color: black;
+    font-size: 14px;
+    padding: 0 2px !important;
+    line-height: 24px;
+  }
+
+  .aioa-dc-table-header {
+    cursor: pointer;
+    font-size: 12px !important;
+    word-break: keep-all !important;
+    white-space: nowrap !important;
+
+    div.cell {
+      font-size: 12px !important;
+    }
+
+    &:hover {
+      color: blue;
+    }
+  }
+}
+
+.aioa-divider.el-divider--horizontal {
+  cursor: pointer;
+  margin: 18px 0;
+  background: linear-gradient(180deg, #555 0%, #222 49%, #000 51%, #222 100%);
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5),
+    0px 7px 6px rgba(0, 0, 0, 0.3);
+
+  .el-divider__text {
+    font-size: 14px;
+    color: #ffeb3b;
+    background-color: black;
+    border-color: #111;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #555 0%, #222 49%, #000 51%, #222 100%);
+    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5),
+      0px 7px 6px rgba(0, 0, 0, 0.3);
+  }
+}

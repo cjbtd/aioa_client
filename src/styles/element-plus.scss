@@ -1,0 +1,36 @@
+.el-dialog {
+  min-width: 400px;
+  border-radius: 5px !important;
+}
+
+.el-dialog__body {
+  color: unset !important;
+  padding: 10px 20px !important;
+  border-top: 1px solid #d8cccc;
+}
+
+.el-scrollbar__thumb,
+.el-scrollbar__thumb:hover {
+  background-color: gold !important;
+}
+
+.el-select-dropdown__item,
+.el-cascader-node {
+  border-bottom: 1px solid #eaecef;
+}
+
+.el-message--warning .el-message__content {
+  color: blue !important;
+}
+
+.el-sub-menu.is-active .el-sub-menu__title {
+  border-bottom-color: #4c4a4a !important;
+}
+
+.el-table thead {
+  color: #303133 !important;
+}
+
+.el-table__body tr.current-row > td {
+  background-color: #a5cff1 !important;
+}

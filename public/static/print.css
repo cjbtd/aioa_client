@@ -1,0 +1,207 @@
+#aioa-dc-tool-attendance p {
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+#aioa-dc-tool-attendance table {
+  border-collapse: collapse;
+  border: 2px solid;
+  font-size: 12px;
+  text-align: center;
+}
+
+#aioa-dc-tool-attendance table > thead {
+  border-bottom: 2px solid;
+}
+
+#aioa-dc-tool-attendance table th,
+#aioa-dc-tool-attendance table td {
+  width: 25px;
+  height: 30px;
+  border: 1px solid;
+  font-weight: unset;
+}
+
+.aioa-layout {
+  position: relative;
+}
+
+.aioa-layout tr.border > td {
+  border-right: 0.5px solid;
+  border-bottom: 0.5px solid;
+}
+
+.aioa-layout tr.border-first > td {
+  border-top: 0.5px solid;
+}
+
+.aioa-layout tr.border-last > td {
+  border-bottom: 0.5px solid;
+}
+
+.border-right {
+  border-right: 0.5px solid !important;
+}
+
+.border-left {
+  border-left: 0.5px solid !important;
+}
+
+.border-top {
+  border-top: 0.5px solid !important;
+}
+
+.border-bottom {
+  border-bottom: 0.5px solid !important;
+}
+
+.aioa-layout tr.border-10 > td {
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.aioa-layout tr.border-first-10 > td {
+  border-top: 1px solid;
+}
+
+.aioa-layout tr.border-last-10 > td {
+  border-bottom: 1px solid;
+}
+
+.border-right-10 {
+  border-right: 1px solid !important;
+}
+
+.border-left-10 {
+  border-left: 1px solid !important;
+}
+
+.border-top-10 {
+  border-top: 1px solid !important;
+}
+
+.border-bottom-10 {
+  border-bottom: 1px solid !important;
+}
+
+.aioa-layout tr.border-15 > td {
+  border-right: 1.5px solid;
+  border-bottom: 1.5px solid;
+}
+
+.aioa-layout tr.border-first-15 > td {
+  border-top: 1.5px solid;
+}
+
+.aioa-layout tr.border-last-15 > td {
+  border-bottom: 1.5px solid;
+}
+
+.border-right-15 {
+  border-right: 1.5px solid !important;
+}
+
+.border-left-15 {
+  border-left: 1.5px solid !important;
+}
+
+.border-top-15 {
+  border-top: 1.5px solid !important;
+}
+
+.border-bottom-15 {
+  border-bottom: 1.5px solid !important;
+}
+
+.aioa-layout tr.border-20 > td {
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+}
+
+.aioa-layout tr.border-first-20 > td {
+  border-top: 2px solid;
+}
+
+.aioa-layout tr.border-last-20 > td {
+  border-bottom: 2px solid;
+}
+
+.border-right-20 {
+  border-right: 2px solid !important;
+}
+
+.border-left-20 {
+  border-left: 2px solid !important;
+}
+
+.border-top-20 {
+  border-top: 2px solid !important;
+}
+
+.border-bottom-20 {
+  border-bottom: 2px solid !important;
+}
+
+.box {
+  width: 100px;
+  display: inline-block;
+}
+
+.box > input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+  line-height: 14px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+
+.box > input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #cacdcf;
+}
+
+.box > input[type="checkbox"]:checked::before {
+  content: "\2714";
+  color: black;
+}
+
+.box.box-small > input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.box.box-middle > input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.box.box-big > input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.txt-center {
+  text-align: center !important;
+}
+
+.txt-right {
+  text-align: right !important;
+}
+
+.txt-left {
+  text-align: left !important;
+}
