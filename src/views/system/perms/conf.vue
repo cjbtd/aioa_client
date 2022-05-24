@@ -96,7 +96,8 @@
         <el-form-item v-for="item in e_status" :key="item.value">
           <template #label>
             <el-button
-              type="text"
+              link
+              type="primary"
               @click="
                 newConf.e_list_status[item.value] = selectAll(item.options)
               "
@@ -135,7 +136,8 @@
         <el-form-item v-for="item in v_status" :key="item.value">
           <template #label>
             <el-button
-              type="text"
+              link
+              type="primary"
               @click="
                 newConf.v_list_status[item.value] = selectAll(item.options)
               "

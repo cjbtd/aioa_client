@@ -58,7 +58,8 @@
         <template #default="{ row }">
           <el-button
             v-if="DC.r_list.length"
-            type="text"
+            link
+            type="primary"
             size="small"
             @click="detail(row)"
           >
@@ -66,7 +67,8 @@
           </el-button>
           <el-button
             v-if="DC.e_list_status"
-            type="text"
+            link
+            type="primary"
             size="small"
             @click="edit(row, false)"
             @contextmenu.prevent="edit(row, true)"

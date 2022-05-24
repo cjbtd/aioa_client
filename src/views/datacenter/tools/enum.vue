@@ -34,13 +34,19 @@
           <span>
             <el-button
               v-show="columnType === 'cascade'"
-              type="text"
+              link
+              type="primary"
               size="small"
               @click="append(node, data)"
             >
               {{ $utils._T("append") }}
             </el-button>
-            <el-button type="text" size="small" @click="remove(node, data)">
+            <el-button
+              link
+              type="primary"
+              size="small"
+              @click="remove(node, data)"
+            >
               {{ $utils._T("delete") }}
             </el-button>
           </span>

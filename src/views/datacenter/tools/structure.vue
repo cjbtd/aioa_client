@@ -14,7 +14,8 @@
         <span class="tree-node">
           <el-button
             v-if="data.label"
-            type="text"
+            link
+            type="primary"
             size="large"
             :icon="!!data.id ? 'user' : 'grid'"
             :class="{ user: !!data.id }"
@@ -30,10 +31,20 @@
             @blur="save(node, data)"
           />
           <span v-if="!!data.value">
-            <el-button type="text" size="small" @click="append(node, data)">
+            <el-button
+              link
+              type="primary"
+              size="small"
+              @click="append(node, data)"
+            >
               {{ $utils._T("append") }}
             </el-button>
-            <el-button type="text" size="small" @click="remove(node, data)">
+            <el-button
+              link
+              type="primary"
+              size="small"
+              @click="remove(node, data)"
+            >
               {{ $utils._T("delete") }}
             </el-button>
           </span>

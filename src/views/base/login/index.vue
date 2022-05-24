@@ -36,13 +36,16 @@
         <div class="btn" @click="login()">{{ $utils._T("login") }}</div>
       </el-form-item>
     </el-form>
+    <aioa-beian />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import AioaBeian from "./beian.vue";
 
 export default defineComponent({
+  components: { AioaBeian },
   data() {
     return {
       username: "admin",

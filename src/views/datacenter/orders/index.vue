@@ -10,7 +10,8 @@
       @close="change(od.idx, 'del')"
     >
       <el-button
-        type="text"
+        link
+        type="primary"
         :icon="iconMap[od.by]"
         @click="change(od.idx, 'add')"
       >
