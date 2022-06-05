@@ -54,8 +54,14 @@ export default defineComponent({
       return this.$store.state.dcs[this.DC_KEY];
     },
   },
-  mounted() {
-    this.init();
+  watch: {
+    "DC.selection": {
+      handler: function () {
+        setTimeout(() => this.init(), 100);
+      },
+      deep: true,
+      immediate: true,
+    },
   },
   methods: {
     init() {

@@ -1,5 +1,11 @@
 <template>
-  <data-center v-if="path" :path="path" :query="query" :isSub="true" />
+  <data-center
+    v-if="path"
+    :path="path"
+    :query="query"
+    :isSub="true"
+    @refresh="refresh"
+  />
 </template>
 
 <script lang="ts">
@@ -9,9 +15,11 @@ export default defineComponent({
   props: ["DC_KEY", "relation", "result"],
   data() {
     let query: Record<string, any> = {};
+
     return {
       path: "",
       query,
+      count: 0,
     };
   },
   computed: {
@@ -44,6 +52,21 @@ export default defineComponent({
 
       this.path = kwargs.path;
     }
+  },
+  methods: {
+    refresh(SUB_DC_KEY: string) {
+      this.count++;
+      if (this.count <= 1) return false;
+
+      let kwargs = this.DC.relations[this.relation].kwargs;
+
+      if (kwargs?.triggers?.indexOf("refresh") >= 0) {
+        this.$store.dispatch("GET_DATA", {
+          key: this.DC_KEY,
+          params: this.DC.params,
+        });
+      }
+    },
   },
 });
 </script>

@@ -221,6 +221,17 @@ export default defineComponent({
     color: blue;
   }
 
+  .el-select {
+    .el-input__inner {
+      width: 198px;
+    }
+  }
+
+  .el-date-editor {
+    width: 222px;
+    height: 28px;
+  }
+
   .el-range-input {
     color: blue;
   }

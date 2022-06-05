@@ -34,3 +34,34 @@
 .el-table__body tr.current-row > td {
   background-color: #a5cff1 !important;
 }
+
+.el-button {
+  &:not(.is-text),
+  &:not(.is-link),
+  &:not(.el-button--text) {
+    background-color: var(--el-button-bg-color);
+    border: var(--el-border);
+    border-color: var(--el-button-border-color);
+
+    &:focus,
+    &:hover {
+      color: var(--el-button-hover-text-color);
+      border-color: var(--el-button-hover-border-color);
+      background-color: var(--el-button-hover-bg-color);
+      outline: 0;
+    }
+
+    &:active {
+      color: var(--el-button-active-text-color);
+      border-color: var(--el-button-active-border-color);
+      background-color: var(--el-button-active-bg-color);
+      outline: 0;
+    }
+
+    &:focus-visible {
+      border-color: transparent;
+      outline: 2px solid var(--el-button-border-color);
+      outline-offset: 1px;
+    }
+  }
+}

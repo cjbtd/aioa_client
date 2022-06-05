@@ -56,7 +56,7 @@
       :max-height="isSub ? '60vh' : undefined"
     />
     <dc-pagination :DC_KEY="DC_KEY" />
-    <aioa-dialog v-if="dialog.visible" :opts="dialog">
+    <oa-dialog v-if="dialog.visible" :opts="dialog">
       <slot :DC_KEY="DC_KEY" :DC="DC"></slot>
       <slot name="edit" :DC_KEY="DC_KEY" :DC="DC">
         <dc-edit-form
@@ -67,7 +67,7 @@
       <slot name="verify" :DC_KEY="DC_KEY" :DC="DC">
         <dc-verify-form v-if="DC.formType === 'verify data'" :DC_KEY="DC_KEY" />
       </slot>
-    </aioa-dialog>
+    </oa-dialog>
   </div>
 </template>
 
@@ -75,7 +75,7 @@
 import { defineComponent, PropType } from "vue";
 import { DEFAULT_DC_KEY, MetaItem } from "~/store/index.d";
 import watermark from "~/utils/watermark";
-import AioaDialog from "~/components/dialog/index.vue";
+import OaDialog from "~/components/dialog/index.vue";
 import DcDisplay from "./display/index.vue";
 import DcEditForm from "./edit/index.vue";
 import DcHelp from "./help/index.vue";
@@ -90,7 +90,7 @@ import DcFullTextSearch from "./search/str.vue";
 
 export default defineComponent({
   components: {
-    AioaDialog,
+    OaDialog,
     DcDisplay,
     DcEditForm,
     DcHelp,
@@ -222,7 +222,7 @@ export default defineComponent({
     },
     "DC.refreshCount"() {
       this.$nextTick(() => {
-        let height = Math.abs(document.body.clientHeight - 180);
+        let height = Math.abs(document.body.clientHeight - 160);
         height -= document.getElementById(this.idDcSearch)?.clientHeight || 0;
         this.height = height + "px";
 
@@ -241,7 +241,11 @@ export default defineComponent({
         });
       }
 
-      if (!this.isSub) this.$router.push({ query: this.DC.params });
+      if (this.isSub) {
+        this.$emit("refresh", this.DC_KEY);
+      } else {
+        this.$router.push({ query: this.DC.params });
+      }
     },
     "dialog.visible"(val) {
       if (val === false) {

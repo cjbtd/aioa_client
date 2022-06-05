@@ -1,22 +1,9 @@
 <template>
   <div>
-    <el-popover
-      trigger="hover"
-      width="fit-content"
-      popper-class="aioa-user-role"
-    >
-      <el-radio-group v-model="rid" @change="change()">
-        <el-radio v-for="item in roles" :key="item.name" :label="item.id">
-          {{ item.name }}
-        </el-radio>
-      </el-radio-group>
-      <template #reference>
-        <div @click="getInfo()">
-          {{ $utils.getUserName() }}
-        </div>
-      </template>
-    </el-popover>
-    <aioa-dialog v-if="dialog.visible" :opts="dialog">
+    <div @click="getInfo()">
+      {{ $utils.getUserName() }}
+    </div>
+    <oa-dialog v-if="dialog.visible" :opts="dialog">
       <el-form label-position="left" label-width="88px">
         <el-form-item :label="$utils._T('_T0038')">
           <el-input
@@ -53,13 +40,13 @@
           {{ $utils._T("save") }}
         </el-button>
       </div>
-    </aioa-dialog>
+    </oa-dialog>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import AioaDialog from "~/components/dialog/index.vue";
+import OaDialog from "~/components/dialog/index.vue";
 
 interface Role {
   id: number;
@@ -67,10 +54,8 @@ interface Role {
 }
 
 export default defineComponent({
-  components: { AioaDialog },
+  components: { OaDialog },
   data() {
-    let roles: Array<Role> = [];
-
     return {
       form: {
         full_name: "",
@@ -81,8 +66,6 @@ export default defineComponent({
         ips: "",
         last_login: "",
       },
-      rid: 0,
-      roles,
       dialog: {
         visible: false,
         title: this.$utils._T("_T0045"),
@@ -90,31 +73,27 @@ export default defineComponent({
       },
     };
   },
+  computed: {
+    roles() {
+      return this.$store.state.roles;
+    },
+  },
   mounted() {
     this.$request({ url: "/base/userroles" }).then((res) => {
       let { status, data } = res.data;
 
       if (status === this.$settings.STATUS.ok) {
-        this.roles = data;
+        this.$store.commit("SET_ROLES", data);
 
-        if (!!data.length) this.rid = data[0].id;
-        this.change();
+        if (data.length > 0) {
+          const key_rid = this.$settings.COOKIE_KEYS.rid;
+          let rid = parseInt(localStorage.getItem(key_rid) + "");
+          this.$store.commit("SET_ROLE_ID", isNaN(rid) ? data[0].id : rid);
+        }
       }
     });
   },
   methods: {
-    change() {
-      let name = "";
-      for (let item of this.roles) {
-        if (item.id === this.rid) {
-          name = item.name;
-          break;
-        }
-      }
-
-      this.$utils.cookie.set(this.$settings.COOKIE_KEYS.rid, this.rid + "");
-      this.$store.commit("SET_ROLE_NAME", name);
-    },
     getInfo() {
       this.$request({
         url: "/chat/userinfo",
@@ -142,14 +121,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-.aioa-user-role {
-  .el-radio-group {
-    display: block;
-  }
-  .el-radio {
-    display: flex;
-  }
-}
-</style>

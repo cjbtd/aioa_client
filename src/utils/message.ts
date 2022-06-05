@@ -138,7 +138,7 @@ export default {
   "_T0111": ["通知", "Notice"],
   "_T0112": ["未做任何改变，是否已经提交过或未修改数据？", "No changes have been made. Has the data been submitted or not modified ?"],
   "_T0113": ["这意味着数据有效，请确认是否继续？", "This means that the data is valid. Are you sure you want to continue?"],
-  "_T0114": ["你的角色：", "You role:"],
+  "_T0114": ["当前选择的角色（点击下方选项可更改）：", "Currently selected roles(Click the option below to change):"],
   "_T0115": ["批量审核时数据状态必须一致", "Data status must be consistent during batch approval"],
   "_T0116": ["操作", "Action"],
   "_T0117": ["当前流程需要你指定一个角色", "The current process requires you to specify a role"],

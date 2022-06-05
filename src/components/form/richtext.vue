@@ -15,6 +15,7 @@ export default defineComponent({
       instance,
       editor,
       val: this.fOpt.val,
+      stop: false,
     };
   },
   watch: {
@@ -42,17 +43,23 @@ export default defineComponent({
       removePlugins: "easyimage,cloudservices,exportpdf",
     });
     this.editor = window.CKEDITOR.instances[this.instance];
-    this.editor.on("blur", () => {
+
+    this.editor.on("change", () => {
+      this.stop = true;
       this.fOpt.val = this.editor.getData() || null;
     });
 
-    this.editor.on("instanceReady", () => {
-      document
-        .getElementById("cke_" + this.instance)
-        ?.addEventListener("mouseleave", () => {
-          this.fOpt.val = this.editor.getData() || null;
-        });
-    });
+    // this.editor.on("blur", () => {
+    //   this.fOpt.val = this.editor.getData() || null;
+    // });
+
+    // this.editor.on("instanceReady", () => {
+    //   document
+    //     .getElementById("cke_" + this.instance)
+    //     ?.addEventListener("mouseleave", () => {
+    //       this.fOpt.val = this.editor.getData() || null;
+    //     });
+    // });
   },
   methods: {
     initVal() {
@@ -61,6 +68,12 @@ export default defineComponent({
       if (val !== this.val) {
         window.CKEDITOR.instances[this.instance].setData(val || "");
       }
+
+      if (this.stop === false && val !== this.val) {
+        window.CKEDITOR.instances[this.instance].setData(val || "");
+      }
+
+      this.stop = false;
     },
   },
 });

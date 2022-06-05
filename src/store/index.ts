@@ -1,10 +1,10 @@
 import { InjectionKey } from "vue";
 import { createStore, Store } from "vuex";
 import { DEFAULT_DC_KEY, State, Getters, Actions, Mutations } from "./index.d";
-import { _T, getObjType, deepCopy } from "~/utils";
+import { _T, getObjType, deepCopy, cookie } from "~/utils";
 import request from "~/utils/request";
 import MESSAGE from "~/utils/message";
-import { VARIABLE, STATUS } from "~/utils/settings";
+import { VARIABLE, STATUS, COOKIE_KEYS } from "~/utils/settings";
 import { buildTable } from "~/utils/datacenter";
 
 const DEFAULT_DC = {
@@ -84,6 +84,7 @@ const state: State = {
   confs: {},
   menus: {},
   metas: {},
+  roles: [],
   caches: [],
   isShowMenu: true,
   isFixedMenu: false,
@@ -123,8 +124,8 @@ const actions: Actions = {
       let { status, data } = res.data;
 
       if (status === STATUS.ok) {
-        commit("LOAD_DATA", { key, data });
         if (func) func(key, data);
+        commit("LOAD_DATA", { key, data });
       }
     });
   },
@@ -138,8 +139,8 @@ const actions: Actions = {
       let { status, data } = res.data;
 
       if (status === STATUS.ok) {
-        commit("LOAD_DATA", { key, data });
         if (func) func(key, data);
+        commit("LOAD_DATA", { key, data });
       }
     });
   },
@@ -173,6 +174,9 @@ const mutations: Mutations = {
   SET_METAS(state, metas) {
     state.metas = metas;
   },
+  SET_ROLES(state, roles) {
+    state.roles = roles;
+  },
   SET_CACHES(state, caches) {
     state.caches = caches;
   },
@@ -183,8 +187,12 @@ const mutations: Mutations = {
     state.isFixedMenu = isFixedMenu;
     state.isShowMenu = !state.isShowMenu;
   },
-  SET_ROLE_NAME(state, name) {
+  SET_ROLE_ID(state, rid) {
+    let name = state.roles.find((item) => item.id === rid)?.name || "";
     state.roleName = name;
+
+    cookie.set(COOKIE_KEYS.rid, rid + "");
+    localStorage.setItem(COOKIE_KEYS.rid, rid + "");
   },
   SET_CONF_NAME(state, name) {
     state.confName = name;

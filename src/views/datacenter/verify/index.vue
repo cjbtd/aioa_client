@@ -1,14 +1,23 @@
 <template>
   <div class="aioa-dc-verify">
-    <div v-if="DC.enable_df" class="tips">
-      <el-button icon="setting" @click="openSetting()">
-        {{ $utils._T("_T0140") }}
-      </el-button>
-      <div>
-        <span style="margin-left: 10px">{{ $utils._T("_T0114") }}</span>
-        <span style="color: red">
-          {{ $store.state.roleName || $utils._T("_T0117") }}
-        </span>
+    <div v-if="DC.enable_df">
+      <div class="tips">
+        <el-button icon="setting" @click="openSetting()">
+          {{ $utils._T("_T0140") }}
+        </el-button>
+        <div>
+          <span style="margin-left: 10px">{{ $utils._T("_T0114") }}</span>
+          <span style="color: red">
+            {{ $store.state.roleName || $utils._T("_T0117") }}
+          </span>
+        </div>
+      </div>
+      <div class="tips">
+        <el-radio-group v-model="rid" @change="changeRid">
+          <el-radio v-for="item in roles" :key="item.name" :label="item.id">
+            {{ item.name }}
+          </el-radio>
+        </el-radio-group>
       </div>
     </div>
     <div class="cmd">
@@ -27,7 +36,7 @@
         </el-popover>
       </template>
     </div>
-    <aioa-form v-if="form" v-show="showForm !== false" :form="form" />
+    <oa-form v-if="form" v-show="showForm !== false" :form="form" />
     <el-card v-if="DC.enable_v_mail && mail">
       <template #header>
         <h2>{{ $utils._T("_T0111") }}</h2>
@@ -40,11 +49,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Cmd } from "~/store/index.d";
-import AioaForm from "~/components/form/index.vue";
+import OaForm from "~/components/form/index.vue";
 import MailSend from "~/components/mail/send.vue";
 
 export default defineComponent({
-  components: { AioaForm, MailSend },
+  components: { OaForm, MailSend },
   props: {
     DC_KEY: {
       type: String,
@@ -62,11 +71,15 @@ export default defineComponent({
       emitSend: false,
       showForm: true,
       cmds,
+      rid: 0,
     };
   },
   computed: {
     DC() {
       return this.$store.state.dcs[this.DC_KEY];
+    },
+    roles() {
+      return this.$store.state.roles;
     },
   },
   watch: {
@@ -87,6 +100,9 @@ export default defineComponent({
     this.initForm();
   },
   methods: {
+    changeRid() {
+      this.$store.commit("SET_ROLE_ID", this.rid);
+    },
     changeRole() {
       if (!this.DC.enable_df) return;
 
@@ -95,6 +111,8 @@ export default defineComponent({
 
       const confs = this.$utils.deepCopy(this.$store.state.confs);
       const df = confs?.[this.DC_KEY]?.dataflow?.[rid] || {};
+
+      if (!isNaN(parseInt(rid))) this.rid = parseInt(rid);
 
       for (let [key, val] of Object.entries(df)) {
         if (this.form?.[key]) this.form[key].val = val;

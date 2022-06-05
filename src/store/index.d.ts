@@ -31,6 +31,11 @@ export interface Meta {
   [path: string]: MetaItem;
 }
 
+export interface Role {
+  id: number;
+  name: string;
+}
+
 export interface MessageForm {
   to?: string;
   cc?: string;
@@ -189,6 +194,7 @@ export interface State {
   confs: Record<string, any>;
   menus: Menu;
   metas: Meta;
+  roles: Array<Role>;
   caches: Array<string>;
   isShowMenu: boolean;
   isFixedMenu: boolean;
@@ -211,10 +217,11 @@ export interface Mutations extends MutationTree<State> {
   SET_CONFS(state: State, confs: Record<string, any>): void;
   SET_MENUS(state: State, menus: Menu): void;
   SET_METAS(state: State, metas: Meta): void;
+  SET_ROLES(state: State, roles: Array<Role>): void;
   SET_CACHES(state: State, caches: Array<string>): void;
   COLLAPSE_MENU_TRUE(state: State): void;
   COLLAPSE_MENU_TOGGLE(state: State, isFixedMenu: boolean): void;
-  SET_ROLE_NAME(state: State, name: string): void;
+  SET_ROLE_ID(state: State, rid: number): void;
   SET_CONF_NAME(state: State, name: string): void;
   LOAD_DATA(state: State, payload: any): void;
 }
