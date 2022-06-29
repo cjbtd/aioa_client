@@ -167,10 +167,11 @@ export default defineComponent({
           let { da, ldk, qj, jjr } = data;
           let excluded = this.kwargs.excluded || [];
 
+          let groups = [];
           let table = [];
           for (let i = 0; i < da.length; i++) {
             if ((i + 1) % 21 === 0) {
-              this.groups.push(table);
+              groups.push(table);
               table = [];
             } else {
               let row = [];
@@ -248,7 +249,9 @@ export default defineComponent({
             }
           }
 
-          if (table.length) this.groups.push(table);
+          if (table.length) groups.push(table);
+
+          this.groups = groups;
         }
       });
     },

@@ -23,10 +23,10 @@
     <a
       target="_blank"
       rel="noopener norefferrer"
-      href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=xxxx"
+      href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34082702340986"
     >
       <img src="/src/assets/beian.png" />
-      <span>皖公网安备 xxxx</span>
+      <span>皖公网安备 34082702340986号</span>
     </a>
   </div>
 </template>
